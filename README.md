@@ -1,5 +1,10 @@
-# cs334 HW7
-Starter code for Lab 7
+# Homework 7, 8, 9 & 10
+
+CSCI 334: Spring 2020;
+ - Lab 7 due Sunday, April 26 by 11:59pm
+ - Lab 8 due Sunday, May 10 by 11:59pm
+ - Lab 9 due Sunday, May 17 by 11:59pm
+ - Lab 10 due Sunday, May 25 by 11:59pm
 
 # Lab Feedback
 
