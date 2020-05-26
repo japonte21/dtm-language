@@ -1,4 +1,4 @@
-﻿(*
+(*
   A simple combinator-style parsing library for F#.
 
   Inspired by the Hutton & Meijer paper as well as the FParsec
@@ -6,7 +6,7 @@
   library trades away performance for simplicity.  If you need
   a fast library, look at FParsec.
 
-  Version: 1.5 (2020-04-28)
+  Version: 1.4 (2019-12-02)
 *)
 
 module Parser
@@ -76,9 +76,9 @@ let (<!>)(p: Parser<'a>)(label: string)(i: Input) : Outcome<'a> =
         | Failure(pos,rule) ->
             let rem = (input i).[pos..]
             if rem.Length > 0 then
-                printfn "[failure at pos %d in rule [%s]: %s, remaining input: \"%s\", next char: %s]" pos rule label rem (cToHex rem.[0])
+                printfn "[failure at pos %d in rule %s: %s, remaining input: \"%s\", next char: %s]" pos rule label rem (cToHex rem.[0])
             else
-                printfn "[failure at pos %d in rule [%s]: %s, remaining input: \"%s\", next char: EOF]" pos rule label rem
+                printfn "[failure at pos %d in rule %s: %s, remaining input: \"%s\", next char: EOF]" pos rule label rem
         o
     // if debugging is disabled
     else
@@ -125,43 +125,18 @@ let pseq(p1: Parser<'a>)(p2: Parser<'b>)(f: 'a*'b -> 'c) : Parser<'c> =
         )
     )
 
-(* overrides the failure cause returned
- * by a failing parser. *)
-let cause(p: Parser<'a>)(rule: String)(i: Input) : Outcome<'a> =
-    let o = p i
-    match o with
-    | Success _ -> o
-    | Failure(pos,_) -> Failure(pos, rule)
-
 let psat(f: char -> bool) : Parser<char> =
-    cause
-        (pbind pitem (fun c -> if (f c) then presult c else pzero))
-        "psat"
+    pbind pitem (fun c -> if (f c) then presult c else pzero)
 
-let pchar(c: char) : Parser<char> =
-    cause
-        (psat (fun c' -> c' = c))
-        (sprintf "pchar '%c'" c)
+let pchar(c: char) : Parser<char> = psat (fun c' -> c' = c)
 
-let pletter : Parser<char> =
-    cause
-        (psat is_letter)
-        "is_letter"
+let pletter : Parser<char> = psat is_letter
 
-let pdigit : Parser<char> =
-    cause
-        (psat is_digit)
-        "is_digit"
+let pdigit : Parser<char> = psat is_digit
 
-let pupper : Parser<char> =
-    cause
-        (psat is_upper)
-        "is_upper"
+let pupper : Parser<char> = psat is_upper
 
-let plower : Parser<char> =
-    cause
-        (psat is_lower)
-        "is_lower"
+let plower : Parser<char> = psat is_lower
 
 let (<|>)(p1: Parser<'a>)(p2: Parser<'a>)(i: Input) : Outcome<'a> =
     let o = p1 i
@@ -208,29 +183,19 @@ let pwsNoNL0 : Parser<char list> = pmany0 (psat is_whitespace_no_nl)
 
 let pwsNoNL1 : Parser<char list> = pmany1 (psat is_whitespace_no_nl)
 
-let pws0 : Parser<char list> =
-    cause
-        (pmany0 (psat is_whitespace))
-        "pws0"
+let pws0 : Parser<char list> = pmany0 (psat is_whitespace)
 
-let pws1 : Parser<char list> =
-    cause
-        (pmany1 (psat is_whitespace))
-        "pws1"
+let pws1 : Parser<char list> = pmany1 (psat is_whitespace)
 
 let pstr(s: string) : Parser<string> =
-    cause
-        (s.ToCharArray()
-        |> Array.fold (fun pacc c ->
-                          pseq pacc (pchar c) (fun (s,ch) -> s + ch.ToString())
-                      ) (presult ""))
-        (sprintf "pstr \"%s\"" s)
+    s.ToCharArray()
+    |> Array.fold (fun pacc c ->
+                      pseq pacc (pchar c) (fun (s,ch) -> s + ch.ToString())
+                  ) (presult "")
 
 let pnl : Parser<string> =
-    cause
-        ((psat (fun c -> c = '\n') |>> (fun c -> c.ToString()))
-        <|> (pstr "\r\n"))
-        "pnl"
+    (psat (fun c -> c = '\n') |>> (fun c -> c.ToString()))
+    <|> (pstr "\r\n")
 
 let peof(i: Input) : Outcome<bool> =
     match pitem i with
