@@ -2,8 +2,6 @@
     the appropriate library calls, and displays the result. *)
 
 open System
-open Parser
-open ProjectParser
 open ProjectInterpreter
 
 [<EntryPoint>]
@@ -23,7 +21,7 @@ let main argv =
         let new_input = readLines input |> Seq.toArray
 
         // calls the driver method to evaluate the input from file
-        driver argv.[0] new_input.[0]
+        driver new_input.[0] new_input.[0]
 
     else
         // calls the driver method to evaluate the input

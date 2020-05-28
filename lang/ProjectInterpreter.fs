@@ -5,7 +5,8 @@ open System.IO
 open Parser
 open ProjectParser
 
-/// reads the lines of a file, source: https://stackoverflow.com/questions/2365527/how-read-a-file-into-a-seq-of-lines-in-f
+/// reads the lines of a file
+// method from ChaosPandion on StackOverflow, source: https://stackoverflow.com/questions/2365527/how-read-a-file-into-a-seq-of-lines-in-f
 let readLines (filePath:string) = seq {
     use sr = new StreamReader (filePath)
     while not sr.EndOfStream do
@@ -37,7 +38,7 @@ let rec eval e =
     | Pre_Div di    -> di |> List.map eval |> List.reduce (fun acc i -> acc / i)
     | Pre_Expo ex   -> ex |> List.map eval |> List.reduce (fun acc i -> acc ** i)
 
-// driver program for the language, parses and evaluates input passed in
+/// driver program for the language, parses and evaluates input passed in
 let driver arg input = 
     match grammar (prepare input) with
     | Success(res,_) ->
