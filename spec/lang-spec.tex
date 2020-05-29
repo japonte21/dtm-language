@@ -112,9 +112,9 @@ clear if $6\div2$ or if $2(3)$ should be done first. \\
 
 Another way to combat the confusion of order of operations is with the inclusion of prefix
 notation in DTM. The examples shown previously were all in infix notation, which takes the
-form of <number> <operation> <number>. However, as the name suggests, prefix notation 
+form of $<number> <operation> <number>$. However, as the name suggests, prefix notation 
 evaluates a math problem with the operation being done preceding the values, following the
-form <operation> <number> <number>. This helps prevent confusion as there is no need to 
+form $<operation> <number> <number>$. This helps prevent confusion as there is no need to 
 know the order of operation rules and how they coexist with another. The operation is just
 completed on all of the numbers that follow it and in the case of multiple operations, 
 they are done from right to left, as the left-most operation relies on the values to the 
@@ -223,6 +223,19 @@ In terms of primitives, there are only 2 to really be aware of, a number (<num>)
 % implemented but which you plan to implement by the final project deadline. This should 
 % include any essential remaining data types and operations described in your proposal 
 % that you have not yet implemented.
+
+When it comes to the future, I think I want to be able to include more mathematical functions 
+that would make DMT more like a scientific calculator. A couple of specific capabilities I had 
+in mind was being able to take the log of a number, implementing percentages, implementing 
+modulo operation, adding a square root function, and possibly graphing as well. Along with 
+this, since the program already supports operations in prefix and infix, I think it would be nice 
+to include support for postfix as well. I don't think there would be that much of a benefit in terms 
+of efficiency, but it could be useful to how people think of handling values. Also, I think one main 
+thing I hope to fix in the future when working on this is division by 0 in prefix. I was able to come 
+up with a way to prevent it when it is an instance of infix, but prefix has stumped me just because 
+I am not sure how to check that there is a 0 value in the list that is not the first element. Along 
+with that, it would be nice to be able to include comments into files.
+
 
 % DO NOT DELETE ANYTHING BELOW THIS LINE
 \end{document}

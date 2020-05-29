@@ -5,7 +5,7 @@ open System.IO
 open Parser
 open ProjectParser
 
-/// reads the lines of a file
+/// reads the lines of a file passed in as input
 // method from ChaosPandion on StackOverflow, source: https://stackoverflow.com/questions/2365527/how-read-a-file-into-a-seq-of-lines-in-f
 let readLines (filePath:string) = seq {
     use sr = new StreamReader (filePath)
@@ -51,3 +51,14 @@ let driver arg input =
         let diag = diagnosticMessage 50 pos arg msg
         printf "%s" diag
         1
+
+/// Read–eval–print loop method, allows for user to interact with DTM
+let rec repl() =
+    printf "||> "
+    let input = System.Console.ReadLine()
+    if input = "quit" then
+        printfn "Exiting..."
+        exit 0
+    else
+        driver input input |> ignore
+        repl()

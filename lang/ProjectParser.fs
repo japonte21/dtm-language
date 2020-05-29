@@ -145,5 +145,5 @@ exprImpl := (deci <|> negDeci <|> num <|> negNum)
              <|> (preExpoExpr <|> preMultExpr <|> preDivExpr <|> prePlusExpr <|> preSubExpr)
              <!> "expr"
 
-/// parser of the input to the program, checks to ensure the end is reached but does not return it
+/// parser of the input to the program, checks if input is valid and ensures the end is reached but does not return it
 let grammar = pleft expr peof <!> "grammar"
