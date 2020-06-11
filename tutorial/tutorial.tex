@@ -1,10 +1,6 @@
 \documentclass[10pt]{article}
 
-% Lines beginning with the percent sign are comments
-% This file has been commented to help you understand more about LaTeX
-
-% DO NOT EDIT THE LINES BETWEEN THE TWO LONG HORIZONTAL LINES
-
+% beginning of formatting
 %---------------------------------------------------------------------------------------------------------
 
 % Packages add extra functionality.
@@ -21,8 +17,8 @@
 	xspace,
 	hyperref}
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
-\usepackage{sect sty}	%For centering section headings
-\usepackage{enumerate}	%Allows more labeling options for enumerate environments 
+\usepackage{sect sty}	% For centering section headings
+\usepackage{enumerate}	% Allows more labeling options for enumerate environments 
 \usepackage{epsfig}
 \usepackage[space]{grffile}
 \usepackage{booktabs}
@@ -34,19 +30,18 @@
 
 \pagestyle{fancy}
 
+% header and footer
 \lhead{\YOURID}
 \chead{\MyLang: Tutorial}
 \rhead{\today}
-\lfoot{CSCI 334: Principles of Programming Languages}
 \cfoot{\thepage}
-\rfoot{Spring 2020}
 
 % Some commands for changing header and footer format
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headwidth}{\textwidth}
 \renewcommand{\footrulewidth}{0.4pt}
 
-% These let you use common environments
+% common environments
 \newtheorem{claim}{Claim}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
@@ -57,17 +52,15 @@
 \setlength{\parindent}{0cm}
 %---------------------------------------------------------------------------------------------------------
 
-% DON'T CHANGE ANYTHING ABOVE HERE
+% beginning of actual document
 \begin{document}
 
-% Edit below as instructed
-\newcommand{\YOURID}{Josiel Aponte}	% Replace "Your Name Here" with your name
-\newcommand{\MyLang}{DTM}	% Replace MyLang with your language name #
-\newcommand{\ProblemHeader}	% Don't change this!
+\newcommand{\YOURID}{Josiel Aponte}	
+\newcommand{\MyLang}{DTM}	
+\newcommand{\ProblemHeader}
 
-\vspace{\baselineskip}	% Add some vertical space
-
-% Refer to the lab handouts to determine what should go in each of these sections.  Each lab is additive. So lab 8 should include everything you wrote in lab 7.  Lab 9 should include everything you wrote in lab 8, etc.
+% Add some vertical space
+\vspace{\baselineskip}
 
 \begin{center}
     \Large\textbf{An Informal Introduction to DTM}\\
@@ -75,24 +68,24 @@
 
 \section{\textit{Introduction}}
 
-As a language, Do The Math (DTM) serves as a tool to solve math problems. Given the way expressions are formatted, DTM reinforces the order of operation rules and avoids problems that are open to interpretation in how they should be solved. This is done with the use of parentheses around all possible operations between two numbers. The language is built using the F\# programming language and is built using the .NET Framework from Microsoft. Although it was written intended to take simple expressions from the command line, DTM also supports running files with an extension of “.dtm”, as well as having a functioning repl that can be used in the command line. The language implements being able to evaluate math problems in prefix and infix notation. For more information giving a much more detailed description of the language, its syntax and its semantics, be sure to read \textit{A Look into DTM (Do the Math)}, which is included in the language’s source code.
+As a language, Do The Math (DTM) serves as a tool to solve math problems. Given the way expressions are formatted, DTM reinforces the order of operation rules and avoids problems that are open to interpretation in how they should be solved. This is done with the use of parentheses around all possible operations between two numbers. The language is written in the F\# programming language and is built using the .NET Framework from Microsoft. Although it was written intended to take simple expressions from the command line, DTM also supports running files with an extension of "$.dtm$" , and has a functioning repl that can be used in the command line. The language implements the evaluation of math problems in prefix and infix notation. For more information giving a much more detailed description of the language, its syntax, and its semantics, be sure to read \textit{A Look into DTM (Do the Math)}, which is included in the language’s source code.
 
 \section{\textit{Using DTM as a Calculator}}
 
-Like most other languages, DTM works as a calculator that can be used to compute math problems. However, in the case of DTM, being a calculator serves as its main purpose.  The operators included in DTM are +, -, *, /, and $\texttt{\^{}}$. They can be used in either infix form, prefix form, or a mix of both. Below are a couple of examples of how programs could be run with DTM from the command line (represented with the notation of $\texttt{->}$):
+Like most other languages, DTM works as a calculator that can be used to compute math problems. However, in the case of DTM, being a calculator serves as its main purpose.  The operators included in DTM are +, -, *, /, and $\texttt{\^{}}$. They can be used in either infix form, prefix form, or a mix of both. Below are a couple of examples of how programs could be run with DTM from the command line (represented with the notation of $\texttt{\$}$):
 
 \begin{verbatim}
-    -> dotnet run "(1 + 5)"
+    $ dotnet run "(1 + 5)"
     6.0
-    -> dotnet run "(/ (11 - 2) 3)"
+    $ dotnet run "(/ (11 - 2) 3)"
     3.0
-    -> dotnet run "example-1.dtm"
+    $ dotnet run "example-1.dtm"
     2.25
-    -> dotnet run "(+ 1 2 3 4 5 6 7 8)"
+    $ dotnet run "(+ 1 2 3 4 5 6 7 8)"
     36.0
 \end{verbatim}
 
-As can be seen, there are many ways to get a problem solved with DTM and using a particular way just depends on someone's preference regarding math. In addition to running commands from the command line, DTM also includes a REPL, which gives a more interactive experience for users to test values they would like to calculate, similar to the experience provided by the Python Interpreter or Node.js. The REPL is represented using $\texttt{||>}$.
+As can be seen, there are many ways to get a problem solved with DTM and using a particular way just depends on someone's preference regarding math. In addition to running commands from the command line, DTM also includes a REPL. It allows for a faster interactive experience for users to quickly test values they would like to calculate, similar to the experience provided by the Python Interpreter or Node.js. It also allows a user to make quicker adjustments to a program they are trying to test to see if they are met with any type of error. The REPL is represented using $\texttt{||>}$.
 
 \begin{verbatim}
     Welcome to DTM!
@@ -105,11 +98,8 @@ As can be seen, there are many ways to get a problem solved with DTM and using a
     6.0
     ||> quit
     Exiting…
-    ->
+    $
 \end{verbatim}
-
-Access to a REPL allows for a quicker interaction with the program and allows a user to make quicker adjustments to a program they are trying to test if they are met with any type of error.
-
 
 \section{\textit{Numbers}}
 
@@ -148,8 +138,6 @@ As mentioned previously, DTM features 5 operations that can be done between numb
 \end{verbatim}
 
 The example includes a problem in which division by 0 is attempted. It is meant to serve as a reminder that division by 0 is not allowed and show what errors in the REPL would look like. But in general, most operations are handled correctly, whether it is done in prefix notation or infix notation.
-The example includes a problem in which division by 0 is attempted. It is meant to serve as a reminder that division by 0 is not allowed.
-
 
 \section{\textit{File Input}}
 
@@ -166,14 +154,13 @@ As a result, a valid DTM file would be made as follows:
 Along with that, running a valid DTM would be done as follow:
 
 \begin{verbatim}
-    -> more example-1.dtm 
+    $ more example-1.dtm 
     (/ (* (+ 1 2) 3) 4)
-    -> dotnet run "example-1.dtm"
+    $ dotnet run "example-1.dtm"
     2.25
 \end{verbatim}
 
 Along with that, file input can only be contained to the command line. The repl currently doesn’t support being able to take in a file and evaluate it as it would be done when doing it from the command line.
-
 
 \section{\textit{Infix vs. Prefix}}
 
