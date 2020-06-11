@@ -72,7 +72,7 @@ As a language, Do The Math (DTM) serves as a tool to solve math problems. Given 
 
 \section{\textit{Using DTM as a Calculator}}
 
-Like most other languages, DTM works as a calculator that can be used to compute math problems. However, in the case of DTM, being a calculator serves as its main purpose.  The operators included in DTM are +, -, *, /, and $\texttt{\^{}}$. They can be used in either infix form, prefix form, or a mix of both. Below are a couple of examples of how programs could be run with DTM from the command line (represented with the notation of $\texttt{\$}$):
+Like most other languages, DTM works as a calculator that can be used to compute math problems. However, in the case of DTM, being a calculator serves as its main purpose.  The operators included in DTM are +, -, *, /, and $\texttt{\^{}}$. They can be used in either infix form, prefix form, or a mix of both. Below are a couple of examples of how programs could be run with DTM from the command line (represented with the notation of $\texttt{\$}$).
 
 \begin{verbatim}
     $ dotnet run "(1 + 5)"
@@ -103,7 +103,7 @@ As can be seen, there are many ways to get a problem solved with DTM and using a
 
 \section{\textit{Numbers}}
 
-Similar to many other general programming languages, the numbers accepted as input in DTM range from rational numbers that can be represented in the form of a decimal. All of the numbers are returned using a float, regardless of whether or not the value has a remainder value. This allows consistency in values and not having to worry about not being able to get an exact value when doing division, or other float operations. An example of the representation of numbers in DTM is shown below through the REPL, along with what an error would look like if there was a mistake in input. 
+Similar to many other programming languages, the numbers accepted as input in DTM range from rational numbers that can be represented in the form of a decimal. All of the numbers are returned using a float, regardless of whether or not the result has a remainder value. This allows for consistency in values and removes the worry of not being able to get an exact value when doing division, or other float operations. An example of the representation of numbers in DTM is shown below through the REPL, along with what an error would look like if there was a mistake in input. 
 
 \begin{verbatim}
     ||> 1 
@@ -122,7 +122,7 @@ Similar to many other general programming languages, the numbers accepted as inp
     4.5
 \end{verbatim}
 
-As mentioned previously, DTM features 5 operations that can be done between numbers, regardless of whether it is prefix notation or infix notation. The examples below show the operations in use:
+As mentioned previously, DTM features 5 operations that can be done between numbers, regardless of whether it is in prefix notation or infix notation. The examples below show the operations in use:
 
 \begin{verbatim}
     ||> (+ 1 2)
@@ -141,14 +141,14 @@ The example includes a problem in which division by 0 is attempted. It is meant 
 
 \section{\textit{File Input}}
 
-Along with taking in direct input from the command line and the repl, DTM supports reading in files written in the DTM language. These files can be run with the extension of "$.dtm$" at the end of it. At this moment, the files do not support the ability to write comments within the code. Along with that, when the file is read in, it only handles one complete expression included. Thus, a file that contains "(+1 2) (1 + 2)" would not be valid, because although each of those are valid expressions for DTM to handle in its own right, the parser, as of now, would try to interpret it as one whole expression to be interpreted to return one result. But that expression would just be seen as incomplete as it isn't bounded by parentheses and there is no operation joining the two sub-expressions.\\
+Along with taking in direct input from the command line and the repl, DTM supports reading in files written in the DTM language. These files can be run with the extension of "$.dtm$" at the end of it. Currently, the files do not support the ability to write comments within the code. Along with that, when the file is read in, it only handles one complete expression included. Thus, a file that contains "(+1 2) (1 + 2)" would not be valid, because although each of those are valid expressions for DTM to handle on separate occasions the parser, as of now, would try to interpret it as one whole expression to be evaluated and return one result. But that expression would just be seen as incomplete as it isn't bounded by parentheses and there is no operation joining the two sub-expressions.\\
 
 As a result, a valid DTM file would be made as follows:
 
 \begin{enumerate}
     \item Name the file with the $.dtm$ extension at the end of it
     \item Contain the file to being 1 complete expression, which in most cases would fit in one line of text
-    \item Save the file, and run it using "dotnet run "nameOfFile.dtm"
+    \item Save the file, and run it using "dotnet run "nameOfFile.dtm" "
 \end{enumerate}
 
 Along with that, running a valid DTM would be done as follow:
@@ -160,11 +160,11 @@ Along with that, running a valid DTM would be done as follow:
     2.25
 \end{verbatim}
 
-Along with that, file input can only be contained to the command line. The repl currently doesn’t support being able to take in a file and evaluate it as it would be done when doing it from the command line.
+File input is contained to the command line. The repl currently doesn’t support being able to take in a file and evaluate it the same way.
 
 \section{\textit{Infix vs. Prefix}}
 
-As mentioned in the introduction, DTM supports the ability to write an expression in terms of prefix notation and infix notation. Infix notation is what humans are most used to when doing math problems, as it is written in a form where two numbers are being handled, and the case in which they are being handled is determined by the operation that lies in between them. Prefix notation is usually handled more so by computers, as they are easier to interpret in computer algorithms. An example of this is the language, LISP, in which all mathematical expressions are written in prefix notation. It is written in the form where two or more numbers are being handled, and the case in which they are being handled is determined by the operation that lies at the front of the list. Here are a couple of examples of expressions written in both, prefix notation and infix notation.
+As mentioned in the introduction, DTM supports the ability to write an expression in terms of prefix notation and infix notation. Infix notation is what humans are most used to when doing math problems. It is written in a form where two numbers are being handled, and the case in which they are being handled is determined by the operation that lies in between them. Prefix notation is usually handled more so by computers, as they are easier to interpret in computer algorithms. An example of this is the language, LISP, in which all mathematical expressions are written in prefix notation. It is written in the form where two or more numbers are being handled, and the case in which they are being handled is determined by the operation that lies at the front of the list. Here are a couple of examples of expressions written in both prefix notation and infix notation.
 
 \begin{verbatim}
     ||> (+ 1 2)
